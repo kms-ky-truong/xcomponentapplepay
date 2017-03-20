@@ -1,0 +1,22 @@
+{
+  "name": "xcomponentapplepay",
+  "description": "Prototype of showing Apple Pay using xcomponent",
+  "main": "index.js",
+  "author": "kms-ky-truong",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "dependencies": {
+    "xcomponent": "*",
+    "bootstrap": "*"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ]
+}

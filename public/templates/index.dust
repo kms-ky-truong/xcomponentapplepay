@@ -1,0 +1,44 @@
+{>"layouts/master" /}
+
+{<body}
+
+    <p>
+        This is a very simple site that demonstrates the redering of Apple&nbsp;Pay and Paypal buttons using xcomponent.
+    </p>
+    <p>
+        Click "Open lightbox" to open the lightbox.
+    </p>
+    <p>
+        Compatible browsers will display an Apple&nbsp;Pay button on the lightbox.
+    </p>
+
+    <script src="components/xcomponent/dist/xcomponent.js"></script>
+    <script src="js/button/component.js"></script>
+    <script src="js/lightbox/component.js"></script>
+
+    <div id="my_button"></div>
+
+    <script>
+
+        // Render the component
+        MyButton.render({
+
+            onComplete: function(result) {
+                alert('BUTTON - The component called back with a result: ' + result);
+            }
+
+        }, '#my_button');
+
+    </script>
+
+
+    <!--
+    NOTE: put Paypal checkout.js here as a workaround to the below error.
+        Error: Unable to delegate rendering. Possibly the component is not loaded in the target window.
+        Ref: https://github.com/paypal/paypal-checkout/issues/140
+    -->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+{/body}
+
+

@@ -1,0 +1,62 @@
+
+<!-- Bootstrap stuff -->
+<link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+<div class="well well-lg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-primary btn-lg modalButton" id="my-button">Open lightbox</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="my_form"></div>
+
+<script src="components/xcomponent/dist/xcomponent.js"></script>
+<script src="js/button/component.js"></script>
+<script src="js/lightbox/component.js"></script>
+
+<script>
+    document.getElementById('my-button').addEventListener('click', renderLightbox);
+
+    function renderLightbox() {
+        
+        MyLightbox.renderTo(window.parent, {
+
+            onComplete: function(result) {
+                console.log('MyLightbox - The component called back with a result:', result);
+                window.xchild.props.onComplete(result);
+            }
+
+        }, window.xchild.props.element, window.xchild.props.context);
+
+        /*MyLightbox.render({
+
+            onComplete: function(result) {
+                console.log('MyLightbox - The component called back with a result:', result);
+                window.xchild.props.onComplete(result);
+            }
+
+        }, '#my_form');*/
+
+    }
+
+    console.log('================ button ===================');
+    console.log(window.xchild);
+    console.log('===========================================');
+</script>
+
+<!--
+NOTE: put Paypal checkout.js here as a workaround to the below error.
+    Error: Unable to delegate rendering. Possibly the component is not loaded in the target window.
+    Ref: https://github.com/paypal/paypal-checkout/issues/140
+-->
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+
+

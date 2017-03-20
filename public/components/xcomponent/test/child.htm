@@ -1,0 +1,8 @@
+<body>
+    <script>
+        var parentWindow = (window.opener || window.parent);
+        window.__coverage__ = parentWindow.__coverage__;
+    </script>
+
+    <script src="/base/test/child.js"></script>
+</body>

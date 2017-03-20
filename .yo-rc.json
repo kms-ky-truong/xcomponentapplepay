@@ -1,0 +1,14 @@
+{
+  "generator-kraken": {
+    "taskModule": "grunt",
+    "lintModule": "eslint",
+    "description": "Prototype of showing Apple Pay using xcomponent",
+    "author": "kms-ky-truong",
+    "templateModule": "makara",
+    "i18n": false,
+    "componentPackager": "bower",
+    "cssModule": "sass",
+    "jsModule": "browserify",
+    "useJson": null
+  }
+}

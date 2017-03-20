@@ -1,0 +1,171 @@
+    <!-- Bootstrap stuff -->
+    <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- xcomponent stuff -->
+    <script src="components/xcomponent/dist/xcomponent.js"></script>
+    <script src="js/lightbox/component.js"></script>
+
+    <script>
+        console.log('************* lightbox *****************');
+        console.log(window.xchild);
+        console.log('****************************************');
+    </script>
+
+
+    <style>
+        #paypal-button {
+            width: 100%;
+        }
+        #apple-pay-button {
+            display: none;
+            background-color: black;
+            background-image: -webkit-named-image(apple-pay-logo-white);
+            background-size: 100% 100%;
+            background-origin: content-box;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 44px;
+            padding: 10px 0;
+            border-radius: 10px;
+        }
+    </style>
+
+    <div class="well well-lg">
+        
+        <h2 class="form-heading">My form</h2>
+
+        <!-- PayPal -->
+        <div class="row">
+        <div class="col-md-12">
+            <div id="paypal-button"></div>
+            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+            <script>
+
+                paypal.Button.render({
+
+                    style: {
+                        size: 'responsive',
+                        color: 'gold',
+                        shape: 'pill'
+                    },
+
+                    commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+
+                    env: 'sandbox', // Specify 'sandbox' for the test environment
+
+                    client: {
+                        sandbox:    'EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM',
+                        production: 'EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM'
+                    },
+
+                    payment: function() {
+                        // Set up the payment here, when the buyer clicks on the button
+                        console.log('-- payment --');
+
+                        var env    = this.props.env;
+                        var client = this.props.client;
+
+                        return paypal.rest.payment.create(env, client, {
+                            transactions: [
+                                {
+                                    amount: { total: '1.00', currency: 'USD' }
+                                }
+                            ]
+                        });
+                    },
+
+                    onAuthorize: function(data, actions) {
+                        // Execute the payment here, when the buyer approves the transaction
+                        console.log('-- onAuthorize --');
+
+                        return actions.payment.execute().then(function() {
+                            // Show a success page to the buyer
+                            console.log('-- onAuthorize success --');
+
+                            window.xchild.props.onComplete('Paypal succeeded!');
+
+                        });
+                    },
+
+                    onCancel: function(data, actions) {
+                        // Show a cancel page or return to cart
+                        console.log('-- onCancel --');
+                        window.xchild.props.onComplete('Paypal cancaled!');
+                    },
+
+                    onError: function(err) {
+                        // Show an error page here, when an error occurs
+                        console.log('-- onError --');
+                        console.log(err);
+                        window.xchild.props.onComplete('Paypal error!');
+                    }
+
+                }, '#paypal-button');
+            </script>
+        </div>
+        </div>
+
+
+        <!-- Apple Pay -->
+        <div class="row">
+        <div class="col-md-12">
+            <button id="apple-pay-button"></button>
+            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+            <script>
+                Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
+                Stripe.applePay.checkAvailability(function(available) {
+
+                    if (available) {
+                        document.getElementById('apple-pay-button').style.display = 'block';
+                    }
+                });
+
+                document.getElementById('apple-pay-button').addEventListener('click', beginApplePay);
+
+
+                function beginApplePay() {
+                    var paymentRequest = {
+                        countryCode: 'US',
+                        currencyCode: 'USD',
+                        total: {
+                            label: 'Stripe.com',
+                            amount: '19.99'
+                        }
+                    };
+                    var session = Stripe.applePay.buildSession(paymentRequest,
+                        function(result, completion) {
+
+                        $.post('/charges', { token: result.token.id }).done(function() {
+                            completion(ApplePaySession.STATUS_SUCCESS);
+
+                            window.xchild.props.onComplete('Apple Pay succeeded!');
+
+                        }).fail(function() {
+                            completion(ApplePaySession.STATUS_FAILURE);
+
+                            window.xchild.props.onComplete('Apple Pay error!');
+                            
+                        });
+
+                    }, function(error) {
+                        console.log(error.message);
+                    });
+
+                    session.oncancel = function() {
+                        console.log("User hit the cancel button in the payment window");
+                        window.xchild.props.onComplete('Apple Pay canceled!');
+                    };
+
+                    session.begin();
+                }
+            </script>
+        </div>
+        </div>
+    </div>
+
+
+
+
