@@ -7,9 +7,9 @@
 
 <button id="done" type="button" class="btn btn-default">Done</button>
 
-    <script src="https://2e2d2a55.ngrok.io/components/xcomponent/dist/xcomponent.js"></script>
-    <script src="https://2e2d2a55.ngrok.io/js/button/component.js"></script>
-    <script src="https://2e2d2a55.ngrok.io/js/lightbox/component.js"></script>
+    <script src="/components/xcomponent/dist/xcomponent.js"></script>
+    <script src="/js/button/component.js"></script>
+    <script src="/js/lightbox/component.js"></script>
     
     <script>
         document.getElementById('done').addEventListener('click', completeRegister);

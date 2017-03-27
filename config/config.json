@@ -39,7 +39,7 @@
             "module": {
                 "arguments": [
                     {
-                        "xframe": "ALLOW-FROM 2e2d2a55.ngrok.io",
+                        "xframe": "ALLOW-FROM localhost:8000",
                         "p3p": false,
                         "csp": false
                     }

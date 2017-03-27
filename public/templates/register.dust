@@ -21,16 +21,16 @@
 </form>
 
 
-    <script src="https://2e2d2a55.ngrok.io/components/xcomponent/dist/xcomponent.js"></script>
-    <script src="https://2e2d2a55.ngrok.io/js/button/component.js"></script>
-    <script src="https://2e2d2a55.ngrok.io/js/lightbox/component.js"></script>
+    <script src="/components/xcomponent/dist/xcomponent.js"></script>
+    <script src="/js/button/component.js"></script>
+    <script src="/js/lightbox/component.js"></script>
 
 
     <script>
         document.getElementById('register_account').addEventListener('click', registerAccount);
 
         function registerAccount() {
-            window.location.href = 'https://2e2d2a55.ngrok.io/thankyou';
+            window.location.href = '/thankyou';
         }
     </script>
 
