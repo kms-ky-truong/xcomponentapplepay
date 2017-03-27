@@ -16,7 +16,7 @@ window.MyButton = xcomponent.create({
     context: 'iframe',
 
     // The url that will be loaded in the iframe or popup, when someone includes my component on their page
-    url: '/button',
+    url: 'https://2e2d2a55.ngrok.io/button',
 
     // The size of the component on their page
     dimensions: {

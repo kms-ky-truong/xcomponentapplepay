@@ -28,7 +28,7 @@ var certificate = fs.readFileSync('sslcert/cert.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 var httpsServer = https.createServer(credentials, app).listen(8443);
 httpsServer.on('listening', function () {
-    console.log('Server listening on http://localhost:%d', this.address().port);
+    console.log('Server listening on https://localhost:%d', this.address().port);
 });
 
 

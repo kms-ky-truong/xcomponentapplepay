@@ -1,0 +1,47 @@
+{>"layouts/master" /}
+
+{<body}
+
+
+<form class="form-inline" id="registerForm">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputPassword3">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Get updates
+    </label>
+  </div>
+  <button id="register_account" type="button" class="btn btn-default">Create account</button>
+</form>
+
+
+    <script src="https://2e2d2a55.ngrok.io/components/xcomponent/dist/xcomponent.js"></script>
+    <script src="https://2e2d2a55.ngrok.io/js/button/component.js"></script>
+    <script src="https://2e2d2a55.ngrok.io/js/lightbox/component.js"></script>
+
+
+    <script>
+        document.getElementById('register_account').addEventListener('click', registerAccount);
+
+        function registerAccount() {
+            window.location.href = 'https://2e2d2a55.ngrok.io/thankyou';
+        }
+    </script>
+
+
+    <!--
+    NOTE: put Paypal checkout.js here as a workaround to the below error.
+        Error: Unable to delegate rendering. Possibly the component is not loaded in the target window.
+        Ref: https://github.com/paypal/paypal-checkout/issues/140
+    -->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+{/body}
+
+

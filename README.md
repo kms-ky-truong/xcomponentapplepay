@@ -1,7 +1,7 @@
 xcomponentapplepay
 ===========
 
-Demo of issue Apple Pay not working with xcomponent lightbox
+Demo of issue [Apple Pay not working with xcomponent lightbox](https://github.com/krakenjs/xcomponent/issues/60)
 
 ### Installation
 

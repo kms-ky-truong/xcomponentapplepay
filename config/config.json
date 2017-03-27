@@ -35,6 +35,18 @@
 
     "middleware": {
 
+        "appsec": {
+            "module": {
+                "arguments": [
+                    {
+                        "xframe": "ALLOW-FROM 2e2d2a55.ngrok.io",
+                        "p3p": false,
+                        "csp": false
+                    }
+                ]
+            }
+        },
+
         
         "makara": {
             "priority": 100,

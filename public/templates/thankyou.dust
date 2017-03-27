@@ -1,0 +1,36 @@
+{>"layouts/master" /}
+
+{<body}
+
+
+<h2>Thank you!!!</h2>
+
+<button id="done" type="button" class="btn btn-default">Done</button>
+
+    <script src="https://2e2d2a55.ngrok.io/components/xcomponent/dist/xcomponent.js"></script>
+    <script src="https://2e2d2a55.ngrok.io/js/button/component.js"></script>
+    <script src="https://2e2d2a55.ngrok.io/js/lightbox/component.js"></script>
+    
+    <script>
+        document.getElementById('done').addEventListener('click', completeRegister);
+
+        function completeRegister() {
+            console.log('************* thankyou page *****************');
+            console.log(window.xchild);
+            console.log('****************************************');
+            window.xchild.props.onComplete('Paypal succeeded XXXXXXX!');
+            window.xchild.close();
+        }
+    </script>
+
+
+    <!--
+    NOTE: put Paypal checkout.js here as a workaround to the below error.
+        Error: Unable to delegate rendering. Possibly the component is not loaded in the target window.
+        Ref: https://github.com/paypal/paypal-checkout/issues/140
+    -->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+{/body}
+
+
